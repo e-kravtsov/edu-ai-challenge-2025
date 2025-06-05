@@ -1,0 +1,23 @@
+{
+  "summary": "Remote work has surged in popularity, especially after the pandemic, offering benefits such as higher job satisfaction, better work-life balance, and reduced company costs. However, it also introduces challenges like employee isolation, decreased collaboration, and difficulties in monitoring productivity. Despite these issues, remote and hybrid work models are expected to persist, supported by advancements in communication technology.",
+  "sentiment": "neutral",
+  "sentiment_score": 0.2,
+  "metadata": {
+    "language": "en",
+    "text_length": 1122,
+    "main_topics": [
+      "remote work",
+      "telecommuting",
+      "work-life balance",
+      "employee satisfaction",
+      "collaboration",
+      "hybrid work",
+      "technology"
+    ],
+    "contains_pros_and_cons": true,
+    "summarization_methods": [
+      "abstractive",
+      "extractive"
+    ]
+  }
+}

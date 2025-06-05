@@ -1,0 +1,23 @@
+Title:
+Logout Button Unresponsive on Safari Browser
+
+Description:
+The logout button does not respond when clicked in the Safari browser. Users are unable to log out of their accounts using this button.
+
+Steps to Reproduce:
+
+Open the application in the Safari browser.
+Log in to your user account (if not already logged in).
+Click on the logout button.
+Expected vs Actual Behavior:
+
+Expected: Clicking the logout button should log the user out and redirect them to the login or home page.
+Actual: Nothing happens when the logout button is clicked; the user remains logged in.
+Environment (if known):
+Browser: Safari
+OS: Not specified
+Device: Not specified
+App Version: Not specified
+
+Severity or Impact:
+High – Users on Safari cannot log out, which may lead to security and privacy concerns.
