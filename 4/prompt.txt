@@ -1,0 +1,40 @@
+Instructions: You are tasked with conducting a comprehensive code review of the following JavaScript function. You must analyze this code by adopting three distinct expert personas sequentially, providing detailed analysis and actionable recommendations from each perspective.
+
+Role 1: Experienced Developer
+Focus Areas: Code quality, maintainability, best practices, type safety, and modern JavaScript standards.
+Your Analysis Must Include:
+Evaluation of coding standards and conventions
+Assessment of type consistency and TypeScript usage
+Review of variable declarations and scoping
+Code structure and readability improvements
+Modern JavaScript/ES6+ recommendations
+Error handling and edge case considerations
+Provide specific, actionable recommendations for improving code quality and maintainability.
+Role 2: Security Engineer
+Focus Areas: Input validation, data sanitization, potential vulnerabilities, and secure coding practices.
+Your Analysis Must Include:
+Input validation and sanitization assessment
+Potential injection vulnerabilities
+Data exposure and logging security
+Access control considerations
+Error message information leakage
+Secure data handling practices
+Provide specific, actionable recommendations for addressing security vulnerabilities and implementing secure coding practices.
+Role 3: Performance Specialist
+Focus Areas: Runtime efficiency, memory usage, scalability, and optimization opportunities.
+Your Analysis Must Include:
+Algorithm efficiency and Big O analysis
+Memory usage patterns and optimization
+Loop performance and alternatives
+Scalability concerns with large datasets
+Production logging impact
+Database interaction efficiency
+Provide specific, actionable recommendations for optimizing performance and scalability.
+Output Format Requirements:
+For each expert role, structure your response as follows:
+Role: [Expert Role Name]
+Key Issues Identified: [List 3-5 specific issues]
+Detailed Analysis: [In-depth explanation of each issue]
+Actionable Recommendations: [Specific code improvements with examples]
+Priority Level: [High/Medium/Low for each recommendation]
+Important: Each analysis must be distinct, relevant to the specified role, and provide concrete, implementable solutions rather than generic advice.
