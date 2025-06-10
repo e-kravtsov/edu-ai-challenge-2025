@@ -1,0 +1,137 @@
+# Enigma Machine Debugging Challenge - AI-Assisted Development Prompt
+
+## Mission: Debug and Fix the Enigma Machine Implementation
+
+You are tasked with debugging a faulty Enigma machine implementation using advanced AI-assisted development techniques. The current code has a critical bug that prevents correct encryption/decryption operations.
+
+## Phase 1: AI-Powered Code Comprehension
+
+**Your first task is to rapidly understand the codebase using AI assistance:**
+
+1. **Architectural Analysis**: Analyze the enigma.js implementation and explain:
+   - How the overall Enigma machine architecture is structured
+   - The role of each major component (Rotors, Reflector, Plugboard)
+   - The encryption flow from input to output
+   - The relationship between the classes and functions
+
+2. **Component Deep-Dive**: For each critical component, explain:
+   - **Rotor Class**: How does stepping work? What is the purpose of ring settings vs positions?
+   - **Plugboard**: How are character swaps implemented?
+   - **Reflector**: What role does it play in the encryption process?
+   - **Double-stepping mechanism**: How should the rotor stepping sequence work?
+
+3. **Code Flow Tracing**: Walk through a complete encryption example:
+   - Input: "HELLO" with settings [0,0,0] positions, [0,0,0] rings, no plugboard
+   - Trace each character through the entire encryption process
+   - Identify where the logic might be failing
+
+## Phase 2: AI-Assisted Bug Diagnosis & Resolution
+
+**Use AI to systematically identify and fix the bug:**
+
+1. **Symptom Analysis**: Based on the provided code, identify:
+   - What specific behavior indicates the bug exists?
+   - Which operations fail (encryption, decryption, or both)?
+   - Are there logical inconsistencies in the stepping mechanism?
+
+2. **Hypothesis Generation**: Develop theories about potential root causes:
+   - Is the double-stepping mechanism implemented correctly?
+   - Are the rotor stepping conditions accurate?
+   - Is the forward/backward rotor traversal correct?
+   - Are the plugboard operations symmetric?
+
+3. **Bug Identification**: Examine the `stepRotors()` method specifically:
+   - Compare the current implementation with historical Enigma stepping rules
+   - Identify the exact line(s) where the bug occurs
+   - Explain why the current logic is incorrect
+
+4. **Solution Implementation**: Provide the corrected code with:
+   - Exact changes needed to fix the bug
+   - Explanation of why each change is necessary
+   - Comments explaining the correct Enigma stepping sequence
+
+## Phase 3: AI-Driven Test Development
+
+**Create comprehensive tests to validate the fix:**
+
+1. **Test Strategy**: Design test cases covering:
+   - Basic encryption/decryption symmetry
+   - Double-stepping scenarios (when middle rotor should advance left rotor)
+   - Rotor turnover positions and notch behavior
+   - Plugboard functionality
+   - Ring setting effects
+   - Edge cases and boundary conditions
+
+2. **Historical Test Cases**: Include tests based on known Enigma examples:
+   - Use documented historical Enigma settings and results
+   - Test against published test vectors if available
+   - Verify the famous "double-stepping" anomaly works correctly
+
+3. **Coverage Requirements**: Ensure tests achieve:
+   - At least 60% code coverage
+   - Coverage of all critical paths in rotor stepping
+   - Validation of both encryption and decryption directions
+   - Multiple rotor configurations and settings
+
+4. **Test Implementation**: Write unit tests using a suitable framework:
+   - Test the Rotor class methods independently
+   - Test the Enigma class integration
+   - Include parameterized tests for multiple configurations
+   - Add performance tests for longer messages
+
+## Phase 4: AI-Enhanced Documentation & Explanation
+
+**Document your findings and solution:**
+
+1. **Bug Report (fix.md)**: Create a detailed explanation including:
+   - **Problem Description**: What was wrong and how it manifested
+   - **Root Cause Analysis**: The exact location and nature of the bug
+   - **Solution Details**: What changes were made and why
+   - **Verification**: How the fix was validated
+
+2. **Code Comments**: Add clear comments to the fixed code explaining:
+   - The correct Enigma stepping sequence
+   - Why the original implementation was incorrect
+   - How the fix addresses the historical behavior
+
+3. **Test Documentation**: Document the test suite including:
+   - Test coverage report showing >60% coverage
+   - Explanation of test scenarios and their importance
+   - How to run the tests and interpret results
+
+## Expected Deliverables
+
+Your solution must include:
+
+1. **Fixed Implementation**: 
+   - `enigma.js` (or equivalent in another language) with the bug corrected
+   - Fully functional CLI that matches the original interface
+
+2. **Test Suite**:
+   - Comprehensive unit tests covering core functionality
+   - Test coverage report demonstrating >60% coverage
+   - Clear test documentation
+
+3. **Documentation**:
+   - `fix.md` explaining the bug and solution
+   - Code comments explaining the corrections
+   - `test_report.txt` with coverage analysis
+
+## Success Criteria
+
+Your solution is complete when:
+- The Enigma machine correctly encrypts and decrypts messages
+- Decryption of encrypted text returns the original message
+- Double-stepping behavior matches historical Enigma behavior
+- All tests pass with >60% code coverage
+- The bug and fix are clearly documented
+
+## AI Collaboration Tips
+
+Throughout this challenge:
+- Ask the AI to explain complex sections before modifying them
+- Use the AI to generate test cases and expected outputs
+- Have the AI review your fix for correctness and completeness
+- Leverage AI to help write clear documentation and explanations
+
+Begin by asking the AI to analyze the current implementation and identify the most likely location of the bug. Then systematically work through each phase to deliver a complete, well-tested solution.
