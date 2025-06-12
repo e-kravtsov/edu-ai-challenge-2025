@@ -1,0 +1,273 @@
+# Sea Battle Modernization & Refactoring Challenge
+
+## Mission: Transform Legacy Sea Battle Code into Modern, Maintainable Architecture
+
+You are tasked with modernizing a legacy Sea Battle (Battleship) game implementation using modern software development practices, clean architecture principles, and comprehensive testing strategies.
+
+## Phase 1: Legacy Code Analysis & Planning
+
+**Your first task is to thoroughly analyze the existing codebase:**
+
+1. **Code Assessment**: Examine the current `seabattle.js` implementation and identify:
+   - Global variables and their usage patterns
+   - Function responsibilities and coupling
+   - Code organization and structure issues
+   - Outdated JavaScript patterns (var, function declarations, etc.)
+   - State management approaches
+
+2. **Architecture Analysis**: Evaluate the current structure:
+   - How is game state managed?
+   - Where is business logic mixed with presentation logic?
+   - What are the core components that should be separated?
+   - How is the CPU AI implemented and can it be improved?
+
+3. **Modernization Strategy**: Plan the refactoring approach:
+   - Which ES6+ features will provide the most benefit?
+   - How should the code be organized into modules/classes?
+   - What architectural pattern would best suit this game?
+   - How can we improve testability and maintainability?
+
+## Phase 2: Modern JavaScript Transformation
+
+**Modernize the codebase using ES6+ features and best practices:**
+
+1. **Language Modernization**:
+   - Replace `var` with `const`/`let` with proper scoping
+   - Convert functions to arrow functions where appropriate
+   - Use template literals for string interpolation
+   - Implement destructuring for cleaner code
+   - Add proper error handling with try/catch
+
+2. **Object-Oriented Design**:
+   - Create classes for core game entities:
+     - `Game` class for overall game management
+     - `Board` class for grid management and display
+     - `Ship` class for ship entities and state
+     - `Player` class for player actions and state
+     - `AIPlayer` class extending Player for CPU logic
+   - Implement proper encapsulation with private fields
+   - Use inheritance and composition appropriately
+
+3. **Module Organization**:
+   - Separate concerns into distinct modules:
+     - `game.js` - Main game orchestration
+     - `board.js` - Board management and rendering
+     - `ship.js` - Ship logic and state
+     - `player.js` - Player base class
+     - `ai-player.js` - AI-specific logic
+     - `utils.js` - Utility functions
+     - `constants.js` - Game configuration
+   - Use ES6 imports/exports for module system
+   - Implement clear interfaces between modules
+
+## Phase 3: Architecture & Design Improvements
+
+**Implement clean architecture principles:**
+
+1. **Separation of Concerns**:
+   - **Game Logic Layer**: Pure business logic without I/O dependencies
+   - **Presentation Layer**: Console output and display formatting
+   - **Input Layer**: User input handling and validation
+   - **AI Layer**: Computer opponent strategy and decision making
+
+2. **State Management**:
+   - Centralize game state in the Game class
+   - Implement immutable state updates where possible
+   - Use event-driven architecture for game events
+   - Ensure predictable state transitions
+
+3. **Design Patterns**:
+   - **Strategy Pattern**: For different AI difficulty levels
+   - **Observer Pattern**: For game events and notifications
+   - **Factory Pattern**: For creating ships and players
+   - **Command Pattern**: For move validation and execution
+
+4. **Error Handling & Validation**:
+   - Input validation with clear error messages
+   - Graceful handling of edge cases
+   - Proper error propagation and logging
+
+## Phase 4: Comprehensive Testing Strategy
+
+**Create a robust test suite with meaningful coverage:**
+
+1. **Test Framework Setup**:
+   - Choose appropriate testing framework (Jest recommended for Node.js)
+   - Configure test environment and scripts
+   - Set up coverage reporting tools
+   - Implement test utilities and helpers
+
+2. **Unit Test Coverage**:
+   - **Board Class Tests**:
+     - Grid initialization and state
+     - Ship placement validation
+     - Hit/miss recording
+     - Board display formatting
+   - **Ship Class Tests**:
+     - Ship creation and positioning
+     - Hit detection and tracking
+     - Sunk status determination
+   - **Player Class Tests**:
+     - Move validation
+     - Guess tracking
+     - Win/loss conditions
+   - **AI Player Tests**:
+     - Hunt mode behavior
+     - Target mode logic
+     - Decision-making algorithms
+   - **Game Class Tests**:
+     - Game initialization
+     - Turn management
+     - Victory conditions
+     - State transitions
+
+3. **Integration Tests**:
+   - Full game flow scenarios
+   - Player vs AI interactions
+   - Multi-turn game sequences
+   - Edge cases and boundary conditions
+
+4. **Coverage Requirements**:
+   - Achieve minimum 60% code coverage
+   - Focus on critical path coverage
+   - Include edge cases and error conditions
+   - Document test scenarios and rationale
+
+## Phase 5: Enhanced Features & Polish
+
+**Optional improvements to demonstrate modern development practices:**
+
+1. **Configuration Management**:
+   - Externalize game settings (board size, ship count, etc.)
+   - Support for different game modes
+   - Configurable AI difficulty levels
+
+2. **Async/Await Integration**:
+   - Convert readline interface to Promise-based
+   - Implement async game loop
+   - Add delays for better UX in AI moves
+
+3. **Enhanced AI Intelligence**:
+   - Probability-based targeting
+   - Ship pattern recognition
+   - Adaptive difficulty adjustment
+
+4. **Code Quality Tools**:
+   - ESLint configuration for code style
+   - Prettier for code formatting
+   - JSDoc for comprehensive documentation
+
+## Expected Deliverables
+
+Your refactored solution must include:
+
+### 1. **Modernized Codebase**
+- **Entry Point**: `index.js` or `seabattle.js` with modern module imports
+- **Core Modules**: Well-organized ES6+ modules with clear responsibilities
+- **Clean Architecture**: Proper separation of concerns and design patterns
+- **Modern Features**: ES6+ syntax, classes, modules, async/await
+
+### 2. **Comprehensive Test Suite**
+- **Test Files**: Complete unit and integration tests
+- **Test Configuration**: Package.json with test scripts and dependencies
+- **Coverage Report**: Detailed coverage analysis showing >60% coverage
+- **Test Documentation**: Clear test descriptions and scenarios
+
+### 3. **Documentation**
+- **refactoring.md**: Detailed explanation of:
+  - Original code issues identified
+  - Modernization strategies applied
+  - Architecture improvements made
+  - Design patterns implemented
+  - Testing approach and coverage achieved
+- **README.md**: Updated with new structure and usage instructions
+
+### 4. **Coverage Analysis**
+- **test_report.txt**: Comprehensive test coverage report including:
+  - Overall coverage percentages
+  - Module-by-module breakdown
+  - Critical path coverage analysis
+  - Areas for future improvement
+
+## Success Criteria
+
+Your refactored implementation will be successful when:
+
+### **Functionality Preservation**
+- ✅ All original game mechanics work correctly
+- ✅ 10x10 grid with proper coordinate system
+- ✅ Turn-based gameplay with hit/miss/sunk logic
+- ✅ AI hunt and target modes function as before
+- ✅ Victory conditions properly detected
+
+### **Code Quality Improvement**
+- ✅ Modern ES6+ syntax throughout
+- ✅ Clear separation of concerns
+- ✅ Elimination of global variables
+- ✅ Proper error handling and validation
+- ✅ Consistent coding style and naming
+
+### **Architecture Excellence**
+- ✅ Modular design with clear interfaces
+- ✅ Appropriate use of design patterns
+- ✅ Testable and maintainable structure
+- ✅ Proper encapsulation and abstraction
+
+### **Testing Completeness**
+- ✅ >60% test coverage achieved
+- ✅ Critical functionality thoroughly tested
+- ✅ Edge cases and error conditions covered
+- ✅ Integration tests validate full game flow
+
+## Development Guidelines
+
+### **Code Style Standards**
+- Use meaningful variable and function names
+- Implement consistent indentation and formatting
+- Add comprehensive JSDoc comments
+- Follow single responsibility principle
+- Minimize code duplication
+
+### **Testing Best Practices**
+- Write descriptive test names and descriptions
+- Use appropriate assertions and matchers
+- Mock external dependencies appropriately
+- Test both positive and negative scenarios
+- Maintain test independence and isolation
+
+### **Architecture Principles**
+- Keep business logic separate from presentation
+- Use dependency injection for testability
+- Implement proper error boundaries
+- Design for extensibility and maintainability
+- Follow SOLID principles where applicable
+
+## Technical Specifications
+
+### **Core Game Requirements**
+- **Board Size**: 10x10 grid (configurable)
+- **Ship Configuration**: 3 ships of length 3 (configurable)
+- **Input Format**: Two-digit coordinates (e.g., "00", "34", "99")
+- **Display Symbols**: 
+  - `~` for water/unknown
+  - `S` for player ships
+  - `X` for hits
+  - `O` for misses
+
+### **AI Behavior**
+- **Hunt Mode**: Random coordinate selection
+- **Target Mode**: Adjacent cell targeting after hits
+- **Transition Logic**: Switch modes based on hit/sink outcomes
+- **Intelligence**: No cheating, plays by same rules as human
+
+### **Modern JavaScript Features to Utilize**
+- **Classes**: For game entities and logic encapsulation
+- **Modules**: ES6 import/export for code organization
+- **Const/Let**: Proper variable scoping and immutability
+- **Arrow Functions**: Concise function syntax where appropriate
+- **Template Literals**: String interpolation and formatting
+- **Destructuring**: Clean parameter and return value handling
+- **Promises/Async-Await**: For asynchronous operations
+- **Array Methods**: map, filter, reduce for data manipulation
+
+Begin by analyzing the current codebase structure and identifying the key areas for improvement. Then systematically work through each phase to deliver a modern, well-tested, and maintainable Sea Battle implementation that demonstrates professional software development practices.
