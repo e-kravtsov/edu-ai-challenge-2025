@@ -1,0 +1,88 @@
+You are an expert AI programmer. Your task is to build a robust validation library in JavaScript, leveraging AI capabilities for design, documentation, and testing.
+
+**Project Requirements:**
+
+You must deliver a complete solution including the validation library code, unit tests, a README file, and a test coverage report.
+
+**Part 1: Validation Library Implementation**
+
+1.  **Base Template:** Start with the following `Schema` builder class structure. You will need to implement the validator classes and their methods.
+
+    ```javascript
+    // Schema Builder
+    class Schema {
+      static string() { /* ... */ }
+      static number() { /* ... */ }
+      static boolean() { /* ... */ }
+      static date() { /* ... */ }
+      static object(schema) { /* ... */ }
+      static array(itemValidator) { /* ... */ }
+    }
+    ```
+
+2.  **Core Validators:**
+    *   Implement the following validator classes: `StringValidator`, `NumberValidator`, `BooleanValidator`, `DateValidator`, `ObjectValidator`, and `ArrayValidator`.
+    *   Each validator must have a `validate(data)` method that returns an object like `{ isValid: boolean, errors: string[] }`.
+
+3.  **Validation Rules (Chaining):**
+    *   **`StringValidator`**: `minLength(n)`, `maxLength(n)`, `pattern(regex)`.
+    *   **`NumberValidator`**: `min(n)`, `max(n)`, `integer()`.
+    *   **All Validators**: `optional()` (to allow `null` or `undefined` values), `withMessage(message)` (to set custom error messages).
+
+4.  **Complex Types:**
+    *   **`ObjectValidator`**: Should validate an object against a schema of other validators.
+    *   **`ArrayValidator`**: Should validate that every item in an array conforms to a given validator.
+
+5.  **Documentation:**
+    *   Generate clear, concise inline documentation (JSDoc comments) for every class and method. Explain what each function does, its parameters, and what it returns.
+
+**Part 2: Unit Testing**
+
+1.  **Setup:** Set up a testing framework (e.g., Jest). Configure `package.json` with the necessary scripts to run tests and generate a coverage report.
+
+2.  **Test Cases:**
+    *   Write comprehensive unit tests for every validator and every validation rule.
+    *   Cover both valid and invalid data scenarios.
+    *   Include tests for edge cases like `null`, `undefined`, empty strings, and empty arrays.
+    *   Test complex, nested data structures.
+
+3.  **Test Coverage:**
+    *   Ensure the test coverage is at least 60%.
+    *   Generate a `test_coverage.txt` file containing the coverage report.
+
+**Part 3: Documentation (README)**
+
+1.  **Create `readme.md`:**
+    *   Write a clear guide on how to install and use your library.
+    *   Provide examples of how to define schemas for both simple and complex objects.
+    *   Include instructions on how to run the provided tests.
+
+**Deliverables Checklist:**
+
+1.  `[library-name].js`: The validation library source code with inline documentation.
+2.  `[library-name].test.js`: The unit tests for the library.
+3.  `package.json`: With all dependencies (e.g., Jest) and scripts.
+4.  `readme.md`: The user guide.
+5.  `test_coverage.txt`: The test coverage report.
+
+**Example Usage (for your reference):**
+
+```javascript
+const userSchema = Schema.object({
+  name: Schema.string().minLength(2),
+  email: Schema.string().pattern(/^[^\s@]+@[^\s@]+\.[^\s@]+$/),
+  age: Schema.number().optional(),
+  tags: Schema.array(Schema.string()),
+});
+
+const userData = {
+  name: "John Doe",
+  email: "john@example.com",
+  tags: ["developer"],
+};
+
+const result = userSchema.validate(userData);
+console.log(result); // Should be { isValid: true, errors: [] }
+```
+
+Now, proceed with generating the files. 
