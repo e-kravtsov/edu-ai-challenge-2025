@@ -1,86 +1,89 @@
 import { GAME_CONFIG } from '../config/game-config.js';
 
 /**
- * Display utility class for rendering game boards and UI
+ * Display utility for rendering game boards and UI elements.
+ * This isolates all console output from the game logic.
  */
 export class Display {
   /**
-   * Renders both player and AI boards side by side
-   * @param {Object} boards - Board data from game.getDisplayBoards()
-   * @returns {string} Formatted board display
+   * Renders the player and opponent boards side-by-side.
+   * @param {Board} playerBoard - The human player's board.
+   * @param {Board} opponentBoard - The opponent's board.
    */
-  static renderBoards(boards) {
-    const { playerBoardGrid, aiBoardGrid } = boards;
-    let display = '\n';
-    
-    // Headers
-    display += '   --- OPPONENT BOARD ---          --- YOUR BOARD ---\n';
-    
-    // Column headers
+  static printBoards(playerBoard, opponentBoard) {
+    console.log('\n   --- OPPONENT BOARD ---          --- YOUR BOARD ---');
     let header = '  ';
     for (let h = 0; h < GAME_CONFIG.BOARD_SIZE; h++) {
       header += `${h} `;
     }
-    display += `${header}     ${header}\n`;
+    console.log(`${header}     ${header}`);
 
-    // Board rows
-    for (let row = 0; row < GAME_CONFIG.BOARD_SIZE; row++) {
-      let rowStr = `${row} `;
+    const playerGrid = playerBoard.getGridCopy();
+    const opponentGrid = opponentBoard.getGridCopy();
 
-      // AI board (opponent) - hide ships
-      for (let col = 0; col < GAME_CONFIG.BOARD_SIZE; col++) {
-        let symbol = aiBoardGrid[row][col];
-        // Hide unhit ships on opponent board
-        if (symbol === GAME_CONFIG.SYMBOLS.SHIP) {
-          symbol = GAME_CONFIG.SYMBOLS.WATER;
-        }
-        rowStr += `${symbol} `;
+    for (let i = 0; i < GAME_CONFIG.BOARD_SIZE; i++) {
+      let rowStr = `${i} `;
+      
+      // Opponent's board (hide ships)
+      for (let j = 0; j < GAME_CONFIG.BOARD_SIZE; j++) {
+        const symbol = opponentGrid[i][j];
+        rowStr += (symbol === GAME_CONFIG.SYMBOLS.SHIP ? GAME_CONFIG.SYMBOLS.WATER : symbol) + ' ';
       }
 
-      rowStr += `    ${row} `;
+      rowStr += `    ${i} `;
 
-      // Player board - show everything
-      for (let col = 0; col < GAME_CONFIG.BOARD_SIZE; col++) {
-        rowStr += `${playerBoardGrid[row][col]} `;
+      // Player's board (show ships)
+      for (let j = 0; j < GAME_CONFIG.BOARD_SIZE; j++) {
+        rowStr += `${playerGrid[i][j]} `;
       }
-
-      display += `${rowStr}\n`;
+      console.log(rowStr);
     }
-
-    display += '\n';
-    return display;
+    console.log('\n');
   }
 
   /**
-   * Renders game title
-   * @returns {string} Game title
+   * Prints a message to the console.
+   * @param {string} message - The message to print.
    */
-  static renderGameTitle() {
-    return `\n=== SEA BATTLE - Modern Edition ===\n`;
+  static printMessage(message) {
+    console.log(message);
   }
 
   /**
-   * Renders game instructions
-   * @returns {string} Game instructions
+   * Prints the result of a player's attack.
+   * @param {object} result - The attack result object.
    */
-  static renderInstructions() {
-    return `\nINSTRUCTIONS:
-• Enter coordinates as two digits (e.g., 00, 34, 99)
-• First digit is row (0-9), second digit is column (0-9)
-• ~ = Water, S = Your Ship, X = Hit, O = Miss
-• Try to sink all ${GAME_CONFIG.SHIP_COUNT} enemy ships!\n`;
-  }
-
-  /**
-   * Renders game messages
-   * @param {Array<string>} messages - Array of message strings
-   * @returns {string} Formatted messages
-   */
-  static renderMessages(messages) {
-    if (!messages || messages.length === 0) {
-      return '';
+  static printPlayerAttackResult(result) {
+    if (result.wasAlreadyHit) {
+        this.printMessage('You already hit that spot!');
+        return;
     }
-    
-    return messages.map(msg => `${msg}\n`).join('');
+    if (result.hit) {
+      this.printMessage(MESSAGES.PLAYER_HIT);
+      if (result.sunk) {
+        this.printMessage(MESSAGES.PLAYER_SUNK);
+      }
+    } else {
+      this.printMessage(MESSAGES.PLAYER_MISS);
+    }
   }
-} 
+
+  /**
+   * Prints the result of the AI's attack.
+   * @param {object} result - The attack result object.
+   * @param {string} coordinate - The coordinate the AI attacked.
+   */
+  static printCpuAttackResult(result, coordinate) {
+    if (result.hit) {
+      this.printMessage(MESSAGES.CPU_HIT(coordinate));
+      if (result.sunk) {
+        this.printMessage(MESSAGES.CPU_SUNK);
+      }
+    } else {
+      this.printMessage(MESSAGES.CPU_MISS(coordinate));
+    }
+  }
+}
+
+// Re-importing MESSAGES here to avoid circular dependency issues if Display is imported elsewhere.
+import { MESSAGES } from '../config/game-config.js'; 

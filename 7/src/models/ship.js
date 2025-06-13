@@ -1,5 +1,8 @@
+import { GAME_CONFIG } from '../config/game-config.js';
+
 /**
  * Ship class representing a battleship with its locations and hit status
+ * Replaces legacy ship objects with proper encapsulation
  */
 export class Ship {
   #locations;
@@ -9,27 +12,27 @@ export class Ship {
 
   /**
    * Creates a new ship instance
-   * @param {Array<string>} locations - Array of coordinate strings (e.g., ['00', '01', '02'])
+   * @param {string[]} locations - Array of coordinate strings (e.g., ['00', '01', '02'])
    * @param {string} orientation - Ship orientation ('horizontal' or 'vertical')
    */
-  constructor(locations = [], orientation = 'horizontal') {
+  constructor(locations = [], orientation = GAME_CONFIG.ORIENTATIONS.HORIZONTAL) {
     this.#locations = [...locations];
-    this.#hits = new Array(locations.length).fill(false);
+    this.#hits = new Array(locations.length).fill('');
     this.#length = locations.length;
     this.#orientation = orientation;
   }
 
   /**
-   * Gets ship locations
-   * @returns {Array<string>} Array of coordinate strings
+   * Gets ship locations (immutable copy)
+   * @returns {string[]} Array of coordinate strings
    */
   get locations() {
     return [...this.#locations];
   }
 
   /**
-   * Gets ship hit status for each location
-   * @returns {Array<boolean>} Array of hit status
+   * Gets ship hit status for each location (immutable copy)
+   * @returns {string[]} Array of hit status ('hit' or '')
    */
   get hits() {
     return [...this.#hits];
@@ -67,11 +70,11 @@ export class Ship {
    */
   hit(coordinate) {
     const index = this.#locations.indexOf(coordinate);
-    if (index === -1 || this.#hits[index]) {
+    if (index === -1 || this.#hits[index] === 'hit') {
       return false;
     }
     
-    this.#hits[index] = true;
+    this.#hits[index] = 'hit';
     return true;
   }
 
@@ -80,7 +83,7 @@ export class Ship {
    * @returns {boolean} True if all locations are hit
    */
   isSunk() {
-    return this.#hits.every(hit => hit);
+    return this.#hits.every(hit => hit === 'hit');
   }
 
   /**
@@ -90,7 +93,7 @@ export class Ship {
    */
   isHit(coordinate) {
     const index = this.#locations.indexOf(coordinate);
-    return index !== -1 && this.#hits[index];
+    return index !== -1 && this.#hits[index] === 'hit';
   }
 
   /**
@@ -98,18 +101,18 @@ export class Ship {
    * @returns {number} Number of hits
    */
   getHitCount() {
-    return this.#hits.filter(hit => hit).length;
+    return this.#hits.filter(hit => hit === 'hit').length;
   }
 
   /**
    * Resets the ship to unhit state (useful for testing)
    */
   reset() {
-    this.#hits.fill(false);
+    this.#hits.fill('');
   }
 
   /**
-   * Creates a ship from start position, length, and orientation
+   * Factory method to create a ship from start position, length, and orientation
    * @param {number} startRow - Starting row
    * @param {number} startCol - Starting column
    * @param {number} length - Ship length
@@ -120,8 +123,8 @@ export class Ship {
     const locations = [];
     
     for (let i = 0; i < length; i++) {
-      const row = orientation === 'horizontal' ? startRow : startRow + i;
-      const col = orientation === 'horizontal' ? startCol + i : startCol;
+      const row = orientation === GAME_CONFIG.ORIENTATIONS.HORIZONTAL ? startRow : startRow + i;
+      const col = orientation === GAME_CONFIG.ORIENTATIONS.HORIZONTAL ? startCol + i : startCol;
       locations.push(`${row}${col}`);
     }
     
@@ -138,12 +141,20 @@ export class Ship {
    * @returns {boolean} True if placement is valid
    */
   static isValidPlacement(startRow, startCol, length, orientation, boardSize) {
-    if (orientation === 'horizontal') {
+    if (orientation === GAME_CONFIG.ORIENTATIONS.HORIZONTAL) {
       return startRow >= 0 && startRow < boardSize && 
              startCol >= 0 && startCol + length <= boardSize;
     } else {
       return startCol >= 0 && startCol < boardSize && 
              startRow >= 0 && startRow + length <= boardSize;
     }
+  }
+
+  /**
+   * Converts ship to string representation for debugging
+   * @returns {string} String representation
+   */
+  toString() {
+    return `Ship(${this.#locations.join(',')}, ${this.#orientation}, hits: ${this.getHitCount()}/${this.#length})`;
   }
 } 

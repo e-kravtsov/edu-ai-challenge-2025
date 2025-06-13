@@ -1,7 +1,7 @@
 {
-  "name": "sea-battle-modern",
+  "name": "sea-battle-modernized",
   "version": "1.0.0",
-  "description": "Modern Sea Battle (Battleship) game implementation with ES6+ features and comprehensive testing",
+  "description": "Modernized Sea Battle (Battleship) game - transformed from legacy code using ES6+ features, clean architecture, and comprehensive testing",
   "main": "src/index.js",
   "type": "module",
   "scripts": {
@@ -18,7 +18,9 @@
     "game",
     "es6",
     "modern-javascript",
-    "testing"
+    "clean-architecture",
+    "testing",
+    "refactoring"
   ],
   "author": "Sea Battle Modernization Project",
   "license": "MIT",
@@ -35,8 +37,7 @@
     "testEnvironment": "node",
     "collectCoverageFrom": [
       "src/**/*.js",
-      "!src/index.js",
-      "!src/utils/input-handler.js"
+      "!src/index.js"
     ],
     "coverageDirectory": "coverage",
     "coverageReporters": [
@@ -46,7 +47,15 @@
     ],
     "testMatch": [
       "**/tests/**/*.test.js"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 60,
+        "functions": 60,
+        "lines": 60,
+        "statements": 60
+      }
+    }
   },
   "eslintConfig": {
     "env": {
@@ -61,12 +70,9 @@
     },
     "rules": {
       "no-console": "off",
-      "no-unused-vars": [
-        "error",
-        {
-          "argsIgnorePattern": "^_"
-        }
-      ]
+      "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+      "prefer-const": "error",
+      "no-var": "error"
     }
   }
-}
+} 

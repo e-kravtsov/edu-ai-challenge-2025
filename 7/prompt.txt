@@ -65,6 +65,7 @@ You are tasked with modernizing a legacy Sea Battle (Battleship) game implementa
 **Implement clean architecture principles:**
 
 1. **Separation of Concerns**:
+   - **Game Logic and gampeplay must stay the same
    - **Game Logic Layer**: Pure business logic without I/O dependencies
    - **Presentation Layer**: Console output and display formatting
    - **Input Layer**: User input handling and validation
@@ -174,16 +175,16 @@ Your refactored solution must include:
 - **Test Documentation**: Clear test descriptions and scenarios
 
 ### 3. **Documentation**
-- **refactoring.md**: Detailed explanation of:
+- **refactoring.md**: Create this file and add detailed explanation of:
   - Original code issues identified
   - Modernization strategies applied
   - Architecture improvements made
   - Design patterns implemented
   - Testing approach and coverage achieved
-- **README.md**: Updated with new structure and usage instructions
+- **README.md**: Create this file and add updated with new structure and usage instructions
 
 ### 4. **Coverage Analysis**
-- **test_report.txt**: Comprehensive test coverage report including:
+- **test_report.txt**: Create this file and add test coverage report including:
   - Overall coverage percentages
   - Module-by-module breakdown
   - Critical path coverage analysis
