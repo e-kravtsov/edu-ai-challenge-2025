@@ -1,0 +1,21 @@
+{
+  "name": "ai-service-analyzer-9",
+  "version": "1.0.0",
+  "description": "A console application to generate comprehensive reports on digital services using AI.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "ai",
+    "cli",
+    "report-generator"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "openai": "^4.24.7"
+  }
+} 
