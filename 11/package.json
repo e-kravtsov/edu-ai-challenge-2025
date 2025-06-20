@@ -1,0 +1,24 @@
+{
+  "name": "ai-audio-analyzer",
+  "version": "1.0.0",
+  "description": "A console tool to transcribe, summarize, and analyze audio files.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "ai",
+    "openai",
+    "whisper",
+    "transcription",
+    "analysis"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "music-metadata": "^7.14.0",
+    "openai": "^4.24.7"
+  }
+} 
